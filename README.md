@@ -1,0 +1,2 @@
+# hnlite
+Hackers news lite
