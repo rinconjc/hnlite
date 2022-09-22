@@ -1,0 +1,108 @@
+/* theme */
+body{
+    background-color: #121212;
+    color:#fff;
+    opacity: 0.65;
+    font: 1.2em sans-serif;
+}
+nav {
+    background-color: #323232 !important;
+}
+p, div, span{
+    line-height:1.5;
+}
+input {
+    color: #e0e0e0;
+}
+a.link {
+    color:#bb86fc !important;
+}
+/* a > i.material-icons { */
+/*     color: #673ab7 !important; */
+/* } */
+.modal {
+    background-color: #424242 !important;
+    
+}
+.modal-footer{
+    background-color: #424242 !important;
+}
+.tabs {
+    background-color: #303030  !important; /*#26a69a */
+}
+.tabs .tab a {
+    color: #e0e0e0 !important;
+}
+.tabs .indicator{
+    background-color: #666 !important;
+}
+.tabs a:focus.active{
+    background-color: rgba(100,100,100,0.2) !important;
+    
+}
+.sidenav{
+    background-color: #323232 !important;
+}
+.sidenav li > a{
+    color: #e0e0e0 !important;
+}
+.sidenav li > a > i.material-icons{
+    color: rgba(255,255,255,0.54) !important;
+}
+.collapsible-body{
+    background-color: #323232 !important;
+}
+.keyboard-focused .collapsible-header:focus{
+    background-color: rgba(100,100,100,0.2) !important;
+}
+.sidenav .collapsible-header:hover{
+    background-color: rgba(100,100,100,0.2) !important;
+}
+.dropdown-content{
+    background-color: #212121 !important;
+}
+
+.card {
+    background-color: #282828 !important;
+}
+
+a.collection-item {
+    background-color: #121212 !important;
+    /* background-color: #282828 !important; */
+    color:#fff !important;
+}
+a.collection-item:hover {
+    background-color: #444 !important;
+    color:#fff !important;
+}
+a.collection-item.active {
+    background-color: #bb86fc !important;
+    color:#000 !important;
+}
+.collection, .collection-item{
+    border-color:#444 !important;
+}
+.comment-body{
+    background-color: #424242 !important;
+}
+
+.dropdown-content {
+    background-color: #323232 !important;
+    overflow: hidden;
+    width: max-content !important;
+}
+.dropdown-content li{
+    color: #fff !important;
+    /* width: 100% !important; */
+}
+.dropdown-content li>a{
+    padding: 7px 8px !important;
+    color:unset !important;
+}
+.dropdown-content li:hover,
+.dropdown-content li.active {
+    background-color:#444 !important;
+}
+.dropdown-content li:focus {
+    outline:none
+}
