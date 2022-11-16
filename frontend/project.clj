@@ -18,10 +18,10 @@
 
   :aliases {"fig"       ["trampoline" "run" "-m" "figwheel.main"]
             "fig:build" ["trampoline" "run" "-m" "figwheel.main" "-b" "dev" "-r"]
-            "fig:min"   ["with-profile" "dev" "run" "-m" "figwheel.main"
+            "fig:min"   ["trampoline" "run" "-m" "figwheel.main"
                          "-co" "{:closure-defines {hnapp.model/SCRAPNEWS-URL \"api\"}
 :process-shim false}"
-                         "-O" "advanced" "-bo" "dev"]
+                         "-O" "advanced" "-bo" "min"]
             "fig:test"  ["run" "-m" "figwheel.main" "-co" "test.cljs.edn" "-m" "hnapp.test-runner"]}
 
   :profiles {:dev
