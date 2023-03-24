@@ -10,7 +10,7 @@
                  [org.clojure/clojurescript "1.11.60"]
                  [binaryage/oops "0.7.2"]
                  ;; [org.clojure/core.async "1.3.610"]
-                 [reagent "1.1.1"]
+                 [reagent "1.2.0"]
                  [cljsjs/react "17.0.2-0"]
                  [cljsjs/react-dom "17.0.2-0"]]
 
