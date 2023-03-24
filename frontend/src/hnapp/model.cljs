@@ -14,7 +14,7 @@
                  ["beststories" "Best Stories"]
                  ["newstories" "News"]])
 
-(defonce app (atom {:story-tab :article-tab :limit 15
+(defonce app (atom {:story-tab :article-tab :limit 30
                     :article {:default? true}
                     :stories (->> (first categories) (zipmap [:cat :label]))}))
 
@@ -40,7 +40,6 @@
 (defn top-stories []
   (let [stories (@app :stories)]
     (when-not (:items stories)
-      (js/console.log "fetching " (:cat stories))
       (fetch! (:cat stories) [:stories :items]))
     (update stories :items #(take (:limit @app) %))))
 
@@ -100,11 +99,6 @@
       (:body article)
       (fetch-article! (:url @it)))))
 
-(defn active-article []
-  (let [it (r/track active-item)]
-    (when @it
-      (assoc @it :body (or (some->> (:text @it) (hash-map :content)) @(r/track article-content))))))
-
 (defn activate! [id]
   (let [current (:active @app)]
     (swap! app assoc :active id
@@ -112,6 +106,7 @@
            :loading true
            :article nil
            :activated true)
+    (swap! app update (str "item/" id) assoc :visited true)
     (doseq [k (some->> current (all-kids @app))]
       (detach! (str "item/" k)))))
 
@@ -137,13 +132,14 @@
   (let [path (-> js/window (oget "location") (oget "hash"))
         [cat & more] (map second (re-seq #"/([^/]+)" path))]
     (js/console.log "path:" path)
-    (if (= cat "story")
-      (activate! (first more))
-      (when-let [[categ label] (some #(and (= cat (first %)) %) categories)]
-        (detach-stories!)
-        (swap! app assoc
-               :stories {:cat categ :label label :items nil}
-               :limit 15)))))
+    (cond
+      (= cat "story") (activate! (first more))
+      (or (= cat "items") (empty? cat)) (set-docking! false)
+      :else (when-let [[categ label] (some #(and (= cat (first %)) %) categories)]
+              (detach-stories!)
+              (swap! app assoc
+                     :stories {:cat categ :label label :items nil}
+                     :limit 15)))))
 
 (defn reply-to [id]
   (let [url (str "https://news.ycombinator.com/reply?id=" id)]

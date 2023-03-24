@@ -21,10 +21,12 @@
 
 (defn story-item [id i]
   (let [story (r/track model/item id)
-        active-item (r/track model/active-item)
-        activate! (handler model/activate! id)]
-    [:a.story-link.collection-item.row {:class (when (= (:id @story) (:id @active-item)) "active")
-                                        :href (str "#/story/" id)}
+        active-item (r/track model/active-item)]
+    [:a.story-link.collection-item.row
+     {:class (cond
+               (= (:id @story) (:id @active-item)) "active"
+               (:visited @story) "visited")
+      :href (str "#/story/" id)}
      [:div.col.s1.center [:b (inc i)]  [:div.center (:score @story)]]
      [:div.col.s11
       [:div.col.s12 [:b (:title @story)]]
@@ -48,7 +50,8 @@
         [:li.dropdown-trigger {:data-target "items"} (:label @stories)
          [:i.right.material-icons "arrow_drop_down"]]
         #(ocall js/M.Dropdown "init" %)]
-       [:li.right [:a.right {:href "#!" :on-click fn-dock} [:i.material-icons "chevron_left"]]]]]
+       [:li.right [:a.right {:href "#!" :on-click fn-dock}
+                   [:i.material-icons "chevron_left"]]]]]
      [:div#stories.collection {:on-scroll (utils/on-scroll-bottom model/page-down!)}
       (for [[i id] (map-indexed vector (:items @stories))]
         ^{:key i} [story-item id i])]]))
@@ -135,14 +138,14 @@
                fn-undock (handler model/set-docking! false)]
     [:div
      [:div.undock {:class (when-not @docked "hide-on-med-and-up")}
-      [:a {:href "#!" :on-click fn-undock} [:i.material-icons "chevron_right"]]]
+      [:a {:href "#/items"} [:i.material-icons "chevron_right"]]]
      [utils/tabs
       [:ul.tabs.tabs-fixed-width
        [:li.tab>a {:href "#article-tab"} "Article"]
        [:li.tab>a {:href "#comments-tab"} (str (:descendants @article) " Comments")]]
       :on-show on-show-fn :active-id @story-tab]
      [:div#article-tab.tab-content
-      [:div.article-body {:on-touch-start #(js/console.log "touch started..." %)}
+      [:div.article-body
        (if @article
          [article-view @article]
          [about])
@@ -157,7 +160,8 @@
                fn-undock (handler model/set-docking! false)]
     [:div.row.full-h
      (when-not @docked
-       [:div.col.m5.full-h {:class (when-not @show-stories? "hide-on-small-only")}
+       [:div.col.m5.full-h
+        {:class (when-not @show-stories? "hide-on-small-only")}
         [top-stories]])
      [:div.col.s12.full-h {:class [(if @docked "m12" "m7")
                                    (when @show-stories? "hide-on-small-only")]}

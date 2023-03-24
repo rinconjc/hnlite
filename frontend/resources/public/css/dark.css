@@ -79,6 +79,9 @@ a.collection-item.active {
     background-color: #bb86fc !important;
     color:#000 !important;
 }
+a.collection-item.visited {
+    color:#aaa !important;
+}
 .collection, .collection-item{
     border-color:#444 !important;
 }
