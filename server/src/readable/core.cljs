@@ -53,7 +53,7 @@
      (url-get url resolve reject))))
 
 (defn generate-page [url referer article]
-  (str "<html>"
+  (str "<!DOCTYPE html><html>"
        "<base href=\"" url "\">"
        "<link rel=\"stylesheet\" href=\"" referer "/css/article-style.css\"/>"
        "<body>"
