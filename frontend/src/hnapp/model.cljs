@@ -106,7 +106,8 @@
            :loading true
            :article nil
            :activated true)
-    (swap! app update (str "item/" id) assoc :visited true)
+    (when current
+      (swap! app update (str "item/" current) assoc :visited true))
     (doseq [k (some->> current (all-kids @app))]
       (detach! (str "item/" k)))))
 
