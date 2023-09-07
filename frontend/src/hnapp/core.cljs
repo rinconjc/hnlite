@@ -109,15 +109,17 @@
 (defn spinner []
   (r/with-let [loading (r/track model/loading)]
     (when @loading
-      [:div.center.spinner>div.preloader-wrapper.big.active>div.spinner-layer.spinner-red-only
-       [:div.circle-clipper.left>div.circle]
-       [:div.gap-patch>div.circle]
-       [:div.circle-clipper.right>div.circle]])))
+      [:div
+       [:div.center.spinner>div.preloader-wrapper.big.active>div.spinner-layer.spinner-red-only
+        [:div.circle-clipper.left>div.circle]
+        [:div.gap-patch>div.circle]
+        [:div.circle-clipper.right>div.circle]]])))
 
 (defn article-view [article]
   (cond
     (:text article) [:div
                      [:h1 (:title article)]
+                     [:a {:target "blank" :href (:url article)} (:url article)]
                      [:p {:dangerouslySetInnerHTML {:__html (:text article)}}]]
     (s/ends-with? (:url article) ".pdf") [:object
                                           {:data (:url article) :height "100%"}]
