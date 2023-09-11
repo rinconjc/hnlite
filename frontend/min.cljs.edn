@@ -1,0 +1,3 @@
+^{:target-dir "target"}
+{:main hnapp.core
+ :infer-externs true}
