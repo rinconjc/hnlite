@@ -21,7 +21,7 @@
             "fig:min"   ["trampoline" "run" "-m" "figwheel.main"
                          "-co" "{:closure-defines {hnapp.model/SCRAPNEWS-URL \"api\"}
 :process-shim false}"
-                         "-O" "advanced" "-bo" "min"]
+                         "-O" "advanced" "-bo" "dev"]
             "fig:test"  ["run" "-m" "figwheel.main" "-co" "test.cljs.edn" "-m" "hnapp.test-runner"]}
 
   :profiles {:dev
