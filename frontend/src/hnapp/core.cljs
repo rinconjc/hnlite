@@ -112,7 +112,7 @@
 (defn spinner []
   (r/with-let [loading (r/track model/loading)]
     (when @loading
-      [:div
+      [:div.spinner
        [:div.center.spinner>div.preloader-wrapper.big.active>div.spinner-layer.spinner-red-only
         [:div.circle-clipper.left>div.circle]
         [:div.gap-patch>div.circle]
